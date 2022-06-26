@@ -1,6 +1,10 @@
-Modules
+MODULES
+
 we import the file using require function and path name.
 if we log the req value it will return an empty object.
 If we have exported something from the module then it will show taht value.
 we can expoet multiple things from one file as an object.
-we have different built in modules in Node.js like OS
+we have different built in modules in Node.js like OS,filesystem.
+
+FILE SYSTEM
+used to read write create files
