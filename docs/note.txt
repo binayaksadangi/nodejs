@@ -1,0 +1,20 @@
+MODULES
+
+we import the file using require function and path name.
+if we log the req value it will return an empty object.
+If we have exported something from the module then it will show taht value.
+we can expoet multiple things from one file as an object.
+we have different built in modules in Node.js like OS,filesystem.
+
+FILE SYSTEM
+used to read write create files
+all the codes explained in file.js
+
+Stream and buffer
+
+when we try to read a large file in the async fun it will take a long time
+instade of that we use buffers. when the buffer is full we give it to the user and like wise 
+we maintatin a stream of buffers.
+
+use createReadStream to create a buffer stream
+then on rs.on(data) it will return the buffer taht got recived and print on the window
