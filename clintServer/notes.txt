@@ -1,0 +1,89 @@
+when we search for a doamin and hit enter it send request to the server that host the website and gives us a html page as a response
+
+Ip address are unique for each computer 
+doamin names are used instade of ip address and it serach for the host computer where the site is hosted and connect to the server
+
+the communication between server and client is via HTTP
+
+Local host is like a domain name (ipadd =  127.0.0.1)
+
+port number is like a specific channel/door on our PC 
+
+
+basic 
+const http = require('http');
+//by using http we will crreate a server
+
+//after getting a req it will print the message on server console
+const server = http.createServer((req,res)=>{
+    console.log(req.method,req.url);
+    //set header content type of res
+    res.setHeader('Content-Type','text/html');
+    res.write('<title>NAUGHTY</title>')
+    res.write('<h1>retry server died</h1>');
+    res.write('<h1>retry server died</h1>');
+
+    res.end();
+});
+//* Here in res we 1st set the type of res we want to send then we send the res then we stop. 
+//after we run the server it will listen to this port
+server.listen(3000,'localhost',()=>{
+    console.log('listening on 3000')
+})
+
+
+//2nd
+
+
+//after getting a req it will print the message on server console
+const server = http.createServer((req,res)=>{
+    console.log(req.method,req.url);
+    //set header content type of res
+    res.setHeader('Content-Type','text/html');
+    //send a html file
+    //read the file and send the data to browser
+    fs.readFile('./clintServer/views/index.html',(err,data)=>{
+        if(err){
+            console.log(err.message);
+            res.end();
+        }
+        else{
+            res.write(data);
+            res.end();
+            // if we are sending only one thing then we can just send in end(data);
+        }
+    })
+    
+});
+
+
+//routing basics
+create a path var and assign it to basic folder like'/views'
+then get the url from req.url then use switch case to decide the path and add to it
+
+    let path = './clintServer/views';
+    switch(req.url){
+        case '/':
+            path += '/index.html'
+            break;
+        case '/about':
+            path += '/about.html';
+            break;
+        default:
+            path += '/404.html';
+            break;
+
+    }
+
+status codes
+200 - ok
+301- resource removed (permanent redirect)
+404 - not found;
+500 - internal server error
+
+just use res.statuscode = *** to set the code for a res.
+
+//4 redirects
+when we have to redirect a path to another path 
+when we get the req.url then set res.Statuscode =301
+then  res.setHeader('Location', '/about');
